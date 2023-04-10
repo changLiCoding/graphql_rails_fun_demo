@@ -13,8 +13,32 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
+    field :user_by_id, Types::UserType, null: true do
+      argument :id, ID, required: true
+    end
+
+    field :users_by_country, [Types::UserType], null: false do
+      argument :country, String, required: true
+    end
+
+    def user_by_id(id:)
+      User.find(id)
+    end
+
+    def users_by_country(country:)
+      User.where(country: country)
+    end
+
+
+
+
     def posts_count
       object.posts.size
     end
+
+
+
+
+
   end
 end
