@@ -17,6 +17,14 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :user_by_name, Types::UserType, null: true do
+      argument :name, String, required: true
+    end
+
+    def user_by_name(name)
+      User.find_by(name: name)
+    end
+
     field :users_by_country, [Types::UserType], null: false do
       argument :country, String, required: true
     end
@@ -29,16 +37,9 @@ module Types
       User.where(country: country)
     end
 
-
-
-
     def posts_count
       object.posts.size
     end
-
-
-
-
 
   end
 end
