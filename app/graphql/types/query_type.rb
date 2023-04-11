@@ -29,7 +29,13 @@ module Types
       User.where(country: country)
     end
 
+    field :user_by_name, Types::UserType, null: true do
+      argument :name, String, required: true
+    end
 
+    def user_by_name(name)
+      User.find_by({name: name})
+    end
 
     field :posts, [Types::PostType], null: false
     def posts
