@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 100.times do
-  user = User.create(name: Faker::Name.name, email: Faker::Internet.email, city: Faker::Address.city, country: Faker::Address.country, postcode: Faker::Address.postcode)
+  user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "password", city: Faker::Address.city, country: Faker::Address.country, postcode: Faker::Address.postcode)
   5.times do
     post = user.posts.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem::paragraph(sentence_count: 5))
     5.times do
@@ -15,5 +15,5 @@
   end
 end
 
-user = User.create(name: "Greta Thunberg", email: "gretat@gmail.com", city: "Stockholm", country: "Sweden", postcode: "12345")
+user = User.create(name: "Greta Thunberg", email: "gretat@gmail.com", city: "Stockholm", country: "Sweden", postcode: "12345", password: "password")
 user.posts.create(title: "Climate Change", body: "Climate change is the biggest threat to our planet. We need to act now!")
