@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: graphqldemo_development
-  username: changli
-  password: development
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

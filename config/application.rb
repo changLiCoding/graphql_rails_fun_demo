@@ -22,6 +22,7 @@ Bundler.require(*Rails.groups)
 module GraphqlFunDemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    Dotenv::Railtie.load
     config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.
