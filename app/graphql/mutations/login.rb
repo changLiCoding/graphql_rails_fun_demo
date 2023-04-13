@@ -2,7 +2,7 @@ class Mutations::Login < Mutations::BaseMutation
   argument :email, String, required: true
   argument :password, String, required: true
 
-  field :user, Types::UserType, null: true
+  field :token, String, null: true
   field :errors, [String], null: false
 
   def resolve(email:, password:)
@@ -10,12 +10,12 @@ class Mutations::Login < Mutations::BaseMutation
 
     if user && user.authenticate(password)
       {
-        user: user,
+        token: user.generate_token,
         errors: []
       }
     else
       {
-        user: nil,
+        token: nil,
         errors: ["Invalid email or password"]
       }
     end

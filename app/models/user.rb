@@ -5,4 +5,15 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
   has_many :posts
   has_many :comments
+
+  def generate_token
+    payload = { user_id: id, exp: Time.now.to_i + 12.hours }
+    p Rails.application.secrets.secret_key_base
+    JwtService.encode(payload, Rails.application.secrets.secret_key_base)
+  end
+
+  # def generate_token
+  #   payload = { user_id: id }
+  #   JwtService.encode(payload)
+  # end
 end

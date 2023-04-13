@@ -3,23 +3,19 @@ class Mutations::SignUp < Mutations::BaseMutation
   argument :email, String, required: true
   argument :password, String, required: true
 
-  field :user, Types::UserType, null: false
+  field :token, String, null: false
   field :errors, [String], null: false
-  def resolve(**kwargs)
-    user = User.new(kwargs)
+  def resolve(name:, email:, password:)
+    user = User.new(name: name, email: email, password: password)
     if user.save
-      # user.token = user.to_sgid(expires_in: 12.hours, for: 'graphql')
-      # user
+
       {
-        user: user,
+        token: user.generate_token,
         errors: [],
       }
     else
       {
-        user: {
-          name: nil,
-          email: nil,
-        },
+        token: nil,
         errors: GraphQL::ExecutionError.new("Register failed."),
       }
     end
