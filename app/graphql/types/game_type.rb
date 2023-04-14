@@ -7,6 +7,8 @@ module Types
     field :releaseDate, GraphQL::Types::ISO8601DateTime, null: false
     field :avg_score, Integer, null: false
     field :total_rating, Integer, null: false
+    field :game_platforms, [Types::GamePlatformType], null: true
+    field :game_genres, [Types::GameGenreType], null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end

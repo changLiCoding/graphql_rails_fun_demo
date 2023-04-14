@@ -11,6 +11,26 @@ module Types
       Game.all
     end
 
+    field :game_by_id, Types::GameType, null: false do
+      argument :id, ID, required: true
+    end
+    def game_by_id(id:)
+      User.find(id)
+    end
+
+    field :game_platforms, [Types::GamePlatformType], null: false
+
+    def game_platforms
+      GamePlatform.all
+    end
+
+    field :game_genres, [Types::GameGenreType], null: false
+
+    def game_genres
+      GameGenre.all
+    end
+
+
     # users
     # field :users, [Types::UserType], null: false
     field :users, [Types::UserType], null: false do
