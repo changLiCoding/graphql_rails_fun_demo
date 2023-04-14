@@ -4,9 +4,16 @@ module Types
     # include GraphQL::Types::Relay::HasNodeField
     # include GraphQL::Types::Relay::HasNodesField
 
+    # games
+    field :games, [Types::GameType], null: false
+
+    def games
+      Game.all
+    end
+
     # users
     # field :users, [Types::UserType], null: false
-  field :users, [Types::UserType], null: false do
+    field :users, [Types::UserType], null: false do
       description "Returns a list of all users"
     end
     def users

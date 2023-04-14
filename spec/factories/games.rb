@@ -5,6 +5,6 @@ FactoryBot.define do
     imageURL { "MyString" }
     releaseDate { "2023-04-13" }
     avg_score { 1 }
-    total-ratings { 1 }
+    total_ratings { 1 }
   end
 end
