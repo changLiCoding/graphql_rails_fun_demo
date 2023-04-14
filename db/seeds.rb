@@ -6,6 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 100.times do
+  game = Game.create(name: Faker::Game.title, description: Faker::Lorem.paragraph(sentence_count: 2), imageURL: Faker::LoremFlickr.image(size: "300x300", search_terms: ['game']), releaseDate: Faker::Date.between(from: '2014-09-23', to: '2021-09-25'), avg_score: Faker::Number.between(from: 1, to: 5), total_ratings: Faker::Number.between(from: 1, to: 1000))
+
+  2.times do
+    game.game_genres.create(name: Faker::Game.genre)
+    game.game_platforms.create(name: Faker::Game.platform)
+  end
+
+end
+
+
+100.times do
   user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "password", city: Faker::Address.city, country: Faker::Address.country, postcode: Faker::Address.postcode)
   5.times do
     post = user.posts.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem::paragraph(sentence_count: 5))
