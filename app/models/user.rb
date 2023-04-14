@@ -5,6 +5,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
   has_many :posts
   has_many :comments
+  has_many :user_games
+  has_many :games, through: :user_games
 
   def generate_token
     payload = { user_id: id, exp: Time.now.to_i + 12.hours }
